@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <style>
+      body {
+        margin: 0;
+        height: 100vh; /*整个视口被分为100vh*/
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .chablin {
+        width: 40em;
+        height: 30em;
+        font-size: 10px;
+        background-color: #eee;
+        box-shadow: 0 0 3em rgba(0, 0, 0, 0.2);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: relative;
+        color: #555;
+        transition: 1s linear;
+      }
+      .chaplin:hover {
+        box-shadow: 0 0 4em 1em rgba(0, 0, 0, 0.2);
+      }
+      .hat {
+        height: 4.6rem;
+        margin: 2%;
+        width: 6rem;
+        background-color: currentColor;
+        border-radius: 2rem 2rem 0 0;
+      }
+      .hat::after {
+        content: '';
+        position: absolute;
+        width: 10rem;
+        height: 0.6rem;
+        background-color: currentColor;
+        border-radius: 0.5rem;
+        top: calc(23% + 0.4em);
+        left: 33.5%;
+      }
+      .beard {
+        margin-top: 7%;
+        width: 1.5em;
+        top: 11.6em;
+        border-width: 0 0.4em 1em 0.4em;
+        border: 1rem solid transparent;
+        border-bottom-color: currentColor;
+      }
+      .stick {
+        position: absolute;
+        width: 0.8em;
+        height: 10.5em;
+        background-color: currentColor;
+        bottom: 0;
+        left: calc((100% - (5.6em - 0.8em)) / 2);
+      }
+
+      .stick::before {
+        content: '';
+        position: absolute;
+        box-sizing: border-box;
+        width: 5.6em;
+        height: 3em;
+        border: 0.8em solid;
+        border-radius: 5.6em 5.6em 0 0;
+        border-bottom: none;
+        top: -3em;
+      }
+
+      .stick::after {
+        content: '';
+        position: absolute;
+        width: 0.8em;
+        height: 0.8em;
+        background-color: currentColor;
+        border-radius: 50%;
+        left: calc(5.6em - 0.8em);
+        top: -0.4em;
+      }
+      .quote {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 50%;
+        left: 67%;
+        font-family: sans-serif;
+        font-weight: bold;
+        text-transform: uppercase;
+      }
+      .quote:nth-child(1) {
+        letter-spacing: 0.05em;
+      }
+      .quote span:nth-child(2) {
+        font-size: 1.6em;
+      }
+      .quote span:nth-child(1),
+      .quote span:nth-child(3) {
+        filter: opacity(0);
+        transition: 1s ease-in;
+      }
+      .chablin:hover .quote span:nth-child(1),
+      .chablin:hover .quote span:nth-child(3) {
+        filter: opacity(1);
+      }
+    </style>
+    <title>chablin</title>
+  </head>
+  <body>
+    <figure class="chablin">
+      <span class="hat"></span> <span class="beard"></span>
+      <span class="stick"></span>
+      <p class="quote">
+        <span>a day without</span> <span>laughter</span>
+        <span>is a day wasted</span>
+      </p>
+    </figure>
+  </body>
+</html>
