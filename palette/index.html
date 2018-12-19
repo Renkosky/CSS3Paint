@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <canvas id="rainbow" width="200" height="200"></canvas>
+    <script>
+      CanvasRenderingContext2D.prototype.sector = function(
+        x,
+        y,
+        radius,
+        sAngle,
+        eAngle,
+        counterclockwise,
+        color
+      ) {
+        this.beginPath()
+        if ((x !== 0, y !== 0)) {
+          this.translate(x, y)
+        }
+        ctx.fillStyle = color || ''
+        this.moveTo(0, 0)
+        this.arc(0, 0, radius, sAngle, eAngle, counterclockwise)
+        this.closePath()
+
+        ctx.fill()
+        return this
+      }
+
+      var ctx = document.getElementById('rainbow').getContext('2d')
+      for (var i = 0; i < 6; i++) {
+        for (var j = 0; j < 6; j++) {
+          let color =
+            'rgb(' +
+            Math.floor(255 - 42.5 * i) +
+            ',' +
+            Math.floor(255 - 42.5 * j) +
+            ',0)'
+          if (i == 0) {
+            ctx.sector(
+              100,
+              100,
+              50,
+              (Math.PI * (i + j + 1) * 15) / 180,
+              (Math.PI * (i + j + 1) * 30) / 180,
+              false,
+              color
+            )
+          } else {
+            ctx.sector(
+              0,
+              0,
+              50,
+              (Math.PI * (i + j + 1) * 15) / 180,
+              (Math.PI * (i + j + 1) * 30) / 180,
+              false,
+              color
+            )
+            console.log(i + j)
+          }
+        }
+      }
+
+      //扇形
+      // 开始一条新路径
+      //   ctx.beginPath()
+      //   // 位移到圆心，方便绘制
+      //   ctx.translate(100, 100)
+      //   // 移动到圆心
+      //   ctx.moveTo(0, 0)
+      //   // 绘制圆弧
+      //   ctx.arc(0, 0, 50, 0, (Math.PI * 30) / 180)
+      //   // 闭合路径
+      //   ctx.closePath()
+      //   ctx.fill()
+
+      //   ctx.beginPath()
+      //   // 位移到圆心，方便绘制
+      //   ctx.moveTo(0, 0)
+      //   // 绘制圆弧
+      //   ctx.arc(0, 0, 50, (Math.PI * 30) / 180, (Math.PI * 60) / 180)
+      //   // 闭合路径
+      //   ctx.closePath()
+      //   ctx.fillStyle = 'rgb(230,231,100)'
+      //   ctx.fill()
+      function colorBar() {
+        var gradientBar = ctx.createLinearGradient(0, 0, 0, width)
+        gradientBar.addColorStop(0, '#f00')
+        gradientBar.addColorStop(1 / 6, '#f0f')
+        gradientBar.addColorStop(2 / 6, '#00f')
+        gradientBar.addColorStop(3 / 6, '#0ff')
+        gradientBar.addColorStop(4 / 6, '#0f0')
+        gradientBar.addColorStop(5 / 6, '#ff0')
+        gradientBar.addColorStop(1, '#f00')
+        ctx.fillStyle = gradientBar
+        ctx.fillRect(0, 0, 20, width)
+      }
+      colorBar()
+    </script>
+  </body>
+</html>
