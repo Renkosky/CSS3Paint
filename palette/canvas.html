@@ -14,105 +14,84 @@
        * @params: ctx canvas_context 已经初始化后的 canvas context
        * @params: x float 圆心 x 坐标
        * @params: y float 圆心 y 坐标
-       * @params: outterRadius float 圆的外径
-       * @params: innerRadius float 圆的内径
-       * @params: wearProof float 细腻度(>0,越小越细腻)
-       * @returs: false
+       * @params: outterRadius float 圆半径
        */
 
-      var colorRing = function(
-        ctx,
-        x,
-        y,
-        outterRadius,
-        innerRadius,
-        wearProof
-      ) {
-        // console.log(i);
-
+      var colorRing = function(ctx, x, y, radius) {
         var r = 255,
           g = 0,
           b = 0,
-          flag = 1; // rgb 对应红绿蓝三色的数值， flag 指色彩渐变过程序号
+          flag = 1 // rgb 对应红绿蓝三色的数值， flag 指色彩渐变过程序号
         for (var j = 0; j < Math.PI * 2; j += Math.PI / 720) {
-          ctx.strokeStyle = "rgb(" + r + "," + g + "," + b + ")";
-          ctx.fillStyle = "rgb(" + r + "," + g + "," + b + ")";
-          ctx.lineWidth = 10;
-          ctx.beginPath();
-          ctx.arc(x, y, 50, j, Math.PI / 720, false);
-          ctx.fill();
+          ctx.strokeStyle = 'rgb(' + r + ',' + g + ',' + b + ')'
+          ctx.lineWidth = 10
+          ctx.beginPath()
+          ctx.arc(x, y, radius, j, Math.PI / 720, false)
+          ctx.stroke()
           // ctx.stroke();
           // 变化规则
           switch (flag) {
             case 1:
               if (g >= 255) {
-                g = 255;
-                r = 254;
-                flag = 2;
-                break;
+                g = 255
+                r = 254
+                flag = 2
+                break
               }
-              g++;
-              break;
+              g++
+              break
             case 2:
               if (r <= 0) {
-                r = 0;
-                b = 1;
-                flag = 3;
-                break;
+                r = 0
+                b = 1
+                flag = 3
+                break
               }
-              r--;
-              break;
+              r--
+              break
             case 3:
               if (b >= 255) {
-                b = 255;
-                g = 254;
-                flag = 4;
-                break;
+                b = 255
+                g = 254
+                flag = 4
+                break
               }
-              b++;
-              break;
+              b++
+              break
             case 4:
               if (g <= 0) {
-                g = 0;
-                r = 1;
-                flag = 5;
-                break;
+                g = 0
+                r = 1
+                flag = 5
+                break
               }
-              g--;
-              break;
+              g--
+              break
             case 5:
               if (r >= 255) {
-                r = 255;
-                b = 254;
-                flag = 6;
-                break;
+                r = 255
+                b = 254
+                flag = 6
+                break
               }
-              r++;
-              break;
+              r++
+              break
             case 6:
               if (b <= 0) {
-                flag = null;
-                break;
+                flag = null
+                break
               }
-              b--;
-              break;
+              b--
+              break
             default:
-              break;
+              break
           }
         }
 
-        return false;
-      };
-      var paint = document.getElementById("paint").getContext("2d");
-      var width = paint.offsetWidth;
-      //  计算画布的高度
-      var height = paint.offsetHeight;
-      // paint.beginPath();
-      // paint.arc(100, 200, 100, 0, Math.PI, false);
-      // paint.stroke();
-      paint.width = width;
-      paint.height = height;
-      colorRing(paint, 200, 200);
+        return false
+      }
+      var ctx = document.getElementById('paint').getContext('2d')
+      colorRing(ctx, 200, 200, 50)
     </script>
   </body>
 </html>
