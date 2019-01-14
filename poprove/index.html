@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <style>
+      #talkbubble {
+        width: 120px;
+        height: 80px;
+        background: red;
+        position: relative;
+        border-radius: 10px;
+        margin-left: 20px;
+      }
+      #talkbubble:before {
+        content: '';
+        position: absolute;
+        right: 100%;
+        top: 26px;
+        border-top: 13px solid transparent;
+        border-right: 26px solid red;
+        border-bottom: 13px solid transparent;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="talkbubble"></div>
+  </body>
+</html>
